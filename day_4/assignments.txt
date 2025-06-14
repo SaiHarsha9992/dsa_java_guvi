@@ -1,0 +1,283 @@
+Programs:
+1. Find 2nd smallest/biggest digit in a number
+2. Find sum of Odd placed Even Digits in a number. 
+Note: You can make other 3 combinations for the above program.
+3. Find smallest/biggest digit in a number.
+4. Find sum of 1st and last digits in a number.
+5. Find nth placed digit in a number
+6. Count number of Prime digits in a number
+7. Count number of composite digits in a number.
+
+
+
+//1. Find 2nd smallest/biggest digit in a number
+import java.util.*;
+public class SecondLargestSmallestDigit{
+    private static int inputNumber;
+    private static int firstLargestNumber;
+    private static int secondLargestNumber;
+    private static int firstSmallestNumber;
+    private static int secondSmallestNumber;
+
+    public static void findSecondLargestNumber(){
+        int tempNumber = inputNumber;
+        firstLargestNumber = Integer.MIN_VALUE;
+        secondLargestNumber = Integer.MIN_VALUE;
+
+        while(tempNumber > 0){
+            int digit = tempNumber % 10;
+            if (digit > firstLargestNumber) {
+                secondLargestNumber = firstLargestNumber;
+                firstLargestNumber = digit;
+            } else if (digit > secondLargestNumber && digit < firstLargestNumber) {
+                secondLargestNumber = digit;
+            }
+            tempNumber /= 10;
+        }
+        System.out.println("Second Largest Digit: " + secondLargestNumber);
+    }
+
+    public static void findSecondSmallestNumber(){
+        int tempNumber = inputNumber;
+        firstSmallestNumber = Integer.MAX_VALUE;
+        secondSmallestNumber = Integer.MAX_VALUE;
+
+        while(tempNumber > 0){
+            int digit = tempNumber % 10;
+            if (digit < firstSmallestNumber) {
+                secondSmallestNumber = firstSmallestNumber;
+                firstSmallestNumber = digit;
+            } else if (digit < secondSmallestNumber && digit > firstSmallestNumber) {
+                secondSmallestNumber = digit;
+            }
+            tempNumber /= 10;
+        }
+        System.out.println("Second Smallest Digit: " + secondSmallestNumber);
+    }
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        inputNumber = scanner.nextInt();
+        findSecondLargestNumber();
+        findSecondSmallestNumber();
+        scanner.close();
+    }
+}
+
+
+//2. Find sum of Odd placed Even Digits in a number.
+
+import java.util.Scanner;
+public class SumOfEvenOddDigits{
+    private static int inputNumber;
+    private static int sumOfEvenDigits;
+    private static int sumOfOddDigits;
+
+    public static void calculateSumOfEvenDigits(){
+        int tempNumber = inputNumber;
+        while(tempNumber > 0){
+            int digit = tempNumber % 10;
+            if (digit % 2 == 0) {
+                sumOfEvenDigits += digit;
+            }
+            tempNumber /= 10;
+        }
+        System.out.println("Sum of Even Digits: " + sumOfEvenDigits);
+    }
+    public static void calculateSumOfOddDigits(){
+        int tempNumber = inputNumber;
+        while(tempNumber > 0){
+            int digit = tempNumber % 10;
+            if (digit % 2 != 0) {
+                sumOfOddDigits += digit;
+            }
+            tempNumber /= 10;
+        }
+        System.out.println("Sum of Odd Digits: " + sumOfOddDigits);
+    }
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        inputNumber = scanner.nextInt();
+        calculateSumOfEvenDigits();
+        calculateSumOfOddDigits();
+        scanner.close();
+    }
+}
+
+//3. Find smallest and largest digit in a number.
+import java.util.Scanner;
+public class LargestSmallestDigit{
+    private static int inputNumber;
+    private static int largestDigit;
+    private static int smallestDigit;
+
+    public static void findLargestAndSmallestDigits(){
+        int tempNumber = inputNumber;
+        largestDigit = Integer.MIN_VALUE;
+        smallestDigit = Integer.MAX_VALUE;
+
+        while(tempNumber > 0){
+            int digit = tempNumber % 10;
+            if (digit > largestDigit) {
+                largestDigit = digit;
+            }
+            if (digit < smallestDigit) {
+                smallestDigit = digit;
+            }
+            tempNumber /= 10;
+        }
+        System.out.println("Largest Digit: " + largestDigit);
+        System.out.println("Smallest Digit: " + smallestDigit);
+    }
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        inputNumber = scanner.nextInt();
+        findLargestAndSmallestDigits();
+        scanner.close();
+    }
+}
+
+//4. Find sum of 1st and last digits in a number.
+
+import java.util.Scanner;
+public class SumOfFirstandLastDigit{
+    private static int inputNumber;
+    private static int firstDigit;
+    private static int lastDigit;
+    private static int sumOfFirstAndLastDigit;
+
+    public static void findSumOfFirstAndLastDigit(){
+        int tempNumber = inputNumber;
+        lastDigit = tempNumber % 10;
+        while(inputNumber > 0){
+            firstDigit = inputNumber % 10;
+            inputNumber /= 10;
+        }
+        sumOfFirstAndLastDigit = firstDigit + lastDigit;
+        System.out.println("Sum of First and Last Digit: " + sumOfFirstAndLastDigit);
+    }
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        inputNumber = scanner.nextInt();
+        findSumOfFirstAndLastDigit();
+        scanner.close();
+    }
+}
+
+//5.Find nth placed digit in a number
+
+import java.util.Scanner;
+public class NthPlacedDigit{
+    private static int inputNumber;
+    private static int nthIndex;
+    private static int nthDigit;
+    
+    public static void getNthDigit(){
+        int tempNumber = inputNumber;
+        int lengthOfNumber = (int) Math.log10(tempNumber) + 1;
+        if (nthIndex < 0 || nthIndex >= lengthOfNumber) {
+            System.out.println("Invalid index. Please enter a valid index.");
+        }
+        else {
+            for (int i = 0; i < lengthOfNumber - nthIndex - 1; i++) {
+                tempNumber /= 10;
+            }
+            nthDigit = tempNumber % 10;
+            System.out.println("The digit at index " + nthIndex + " is: " + nthDigit);
+        }
+    }
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        inputNumber = scanner.nextInt();
+        System.out.print("Enter the index of the digit to retrieve (0 for last digit): ");
+        nthIndex = scanner.nextInt();
+        getNthDigit();
+        scanner.close();
+    }
+}
+
+//6. Count number of Prime digits in a number
+
+import java.util.Scanner;
+public class PrimeDigits{
+    private static int inputNumber;
+    private static int primeDigitCount;
+
+    private static boolean isPrime(int digit) {
+        if (digit < 2) return false;
+        for (int i = 2; i <= Math.sqrt(digit); i++) {
+            if (digit % i == 0) return false;
+        }
+        return true;
+    }
+
+    private static void findPrimeDigits() {
+        int tempNumber = inputNumber;
+        primeDigitCount = 0;
+
+        while (tempNumber > 0) {
+            int digit = tempNumber % 10;
+            if (isPrime(digit)) {
+                primeDigitCount++;
+            }
+            tempNumber /= 10;
+        }
+
+        System.out.println("The number of prime digits in " + inputNumber + " is: " + primeDigitCount);
+    }
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        inputNumber = scanner.nextInt();
+        findPrimeDigits();
+        scanner.close();
+    }
+}
+
+//7. Count number of composite digits in a number.
+import java.util.Scanner;
+public class CompositeDigits{
+    private static int inputNumber;
+    private static int compositeDigitCount;
+
+    public static void findCompositeDigitCount() {
+        int tempNumber = inputNumber;
+        compositeDigitCount = 0;
+
+        while (tempNumber > 0) {
+            int digit = tempNumber % 10;
+            if (isComposite(digit)) {
+                compositeDigitCount++;
+            }
+            tempNumber /= 10;
+        }
+
+        System.out.println("The number of composite digits in " + inputNumber + " is: " + compositeDigitCount);
+    }
+
+    public static boolean isComposite(int digit) {
+        if (digit < 4) return false; 
+        for (int i = 2; i <= Math.sqrt(digit); i++) {
+            if (digit % i == 0 && digit != i) {
+                return true;
+            }
+        }
+        return false; 
+    }
+
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        inputNumber = scanner.nextInt();
+        findCompositeDigitCount();
+    }
+}
