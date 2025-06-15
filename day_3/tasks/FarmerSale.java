@@ -10,7 +10,6 @@ public class FarmerSale{
         double sugarcaneSales = calculateGenericSales(acresPerSegment, 45, 4000);
 
 
-
         double totalSales = tomatoSales + potatoSales + cabbageSales + sunflowerSales + sugarcaneSales;
 
         double chemicalFreeSales = tomatoSales + potatoSales + cabbageSales + sunflowerSales;
@@ -36,3 +35,4 @@ public class FarmerSale{
         }
     }
 }
+

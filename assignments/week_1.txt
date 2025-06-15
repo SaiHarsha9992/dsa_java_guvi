@@ -1,0 +1,6 @@
+1. Write a program convert an infix expression into postfix.
+2. Write a program to evaluate a postfix expression
+3. implement the algorithm of how floating point numbers are stored in memory.
+4. Which are th e2 relational operators using which all other relational operators can be implemented?
+Draw back of ppl
+advantage of oopl 
